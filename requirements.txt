@@ -1,0 +1,10 @@
+streamlit
+pandas
+matplotlib
+fastapi
+uvicorn
+zhipuai
+httpx
+sniffio
+python-dotenv
+Jinja2
