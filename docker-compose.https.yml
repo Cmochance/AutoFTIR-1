@@ -8,8 +8,9 @@ services:
     build: .
     container_name: autoftir-backend
     command: python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
-    ports:
-      - "8001:8000"
+    # 不暴露到宿主机，仅容器内部通信（通过 Nginx 代理访问）
+    expose:
+      - "8000"
     environment:
       - AI_PROVIDER=${AI_PROVIDER:-openai_compat}
       - AI_API_KEY=${AI_API_KEY}
@@ -29,8 +30,9 @@ services:
     build: .
     container_name: autoftir-frontend
     command: python -m streamlit run app.py --server.address=0.0.0.0 --server.port=8501
-    ports:
-      - "8501:8501"
+    # 不暴露到宿主机，仅容器内部通信（通过 Nginx 代理访问）
+    expose:
+      - "8501"
     environment:
       - FTIR_BACKEND_URL=http://backend:8000
     volumes:
