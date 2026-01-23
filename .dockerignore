@@ -31,9 +31,3 @@ Thumbs.db
 # Windows 批处理（部署不需要）
 *.bat
 
-# 文档（可选保留）
-# README.md
-
-# Docker（避免嵌套）
-Dockerfile
-docker-compose.yml

@@ -29,14 +29,15 @@ services:
   frontend:
     build: .
     container_name: autoftir-frontend
-    command: python -m streamlit run app.py --server.address=0.0.0.0 --server.port=9501
+    command: python -m streamlit run streamlit_app.py --server.address=0.0.0.0 --server.port=9501
     # 不暴露到宿主机，仅容器内部通信（通过 Nginx 代理访问）
     expose:
       - "9501"
     environment:
       - FTIR_BACKEND_URL=http://backend:9000
     volumes:
-      - ./app.py:/app/app.py:ro
+      - ./streamlit_app.py:/app/streamlit_app.py:ro
+      - ./ui:/app/ui:ro
       - ./modules:/app/modules:ro
       - ./templates:/app/templates:ro
     depends_on:
